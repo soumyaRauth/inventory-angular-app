@@ -10,40 +10,44 @@ import {Product} from './product.model';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  products:Array<Product>=[
-    new Product(
-    "Nike Shoe",
-    "NS",
-    "/assets/images/products/black-hat.jpg",
-    ["Men", "Accessories", "shoes"],
-    20.99
-    ),
-    new Product(
-    "Addidas Shoe",
-    "AS",
-    "/assets/images/products/black-hat.jpg",
-    ["Men", "Accessories", "shoes"],
-    22.99
-    ),
-    new Product(
-    "Bata Shoe",
-    "BS",
-    "/assets/images/products/black-hat.jpg",
-    ["Men", "Accessories", "Shoes"],
-    10.99
-    ),
-  
-  ];
+ 
+  products:Array<Product>;
+  messageFlag:boolean=false;
 
-  constructor() {}
+  constructor() {
+    this.products=[new Product(
+      'MYSHOES',
+      'Black Running Shoes',
+      '/assets/images/products/black-shoes.jpg',
+      ['Men', 'Shoes', 'Running Shoes'],
+      109.99),
+      new Product(
+      'NEATOJACKET',
+      'Blue Jacket',
+      '/assets/images/products/blue-jacket.jpg',
+      ['Women', 'Apparel', 'Jackets & Vests'],
+      238.99),
+      new Product(
+      'NICEHAT',
+      'A Nice Black Hat',
+      '/assets/images/products/black-hat.jpg',
+      ['Men', 'Accessories', 'Hats'],
+      29.99)
+      ];
+  }
 
+
+  /**
+   * This is a single liner function
+   */
+
+  doubleClicked=()=>this.messageFlag=true;
+
+  disapear=()=>this.messageFlag=false;
 
   /**
    * Product selected functionality
    */
-  productWasSelected(product:Product){
-    console.log('Product Clicked',product);
-    
-  }
+  productWasSelected = (product:Product)=>console.log(product)
 
 }

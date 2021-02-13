@@ -37,13 +37,8 @@ export class AppComponent {
   }
 
 
-  /**
-   * This is a single liner function
-   */
 
-  doubleClicked=()=>this.messageFlag=true;
 
-  disapear=()=>this.messageFlag=false;
 
   /**
    * Product selected functionality

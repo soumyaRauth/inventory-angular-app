@@ -1,19 +1,20 @@
 <div class="ui raised segment">
   <h2 class="ui header">Demo Form: Sku with Builder</h2>
-  <form
-    [formGroup]="myFormGroup"
-    (ngSubmit)="onSubmit(myFormGroup.value)"
-    class="ui form"
-  >
+  <form [formGroup]="myForm"
+        (ngSubmit)="onSubmit(myForm.value)"
+        class="ui form">
+
     <div class="field">
       <label for="skuInput">SKU</label>
-      <input
-        type="text"
-        id="skuInput"
-        placeholder="SKU"
-        formControlName="sku"
-      />
+      <input type="text"
+             id="skuInput"
+             placeholder="SKU"
+             formControlName=sku>
+       
     </div>
-    <button type="submit" class="ui button">Submit</button>
+
+  <button type="submit" class="ui button" [disabled]="!myForm.controls['sku'].valid">Submit</button>
+  <span *ngIf="myForm.controls['sku'].hasError('required')"
+         class="ui error ">SKU is required</span>
   </form>
 </div>

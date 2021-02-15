@@ -22,7 +22,7 @@ sku:FormControl=new FormControl();
 constructor(private fb:FormBuilder)
 {
   this.myForm=fb.group({
-    'sku':['', Validators.compose([Validators.required,skuContainsNum,skuStartsWithNum]) ]
+    'sku':['', Validators.compose([Validators.required,skuContainsNum,this.skuStartsWithNum,fuckValidator,noThanos]) ]
   })
 
  this.myForm.valueChanges.subscribe((form:FormGroup)=>{
@@ -32,6 +32,16 @@ constructor(private fb:FormBuilder)
   
 }
 
+
+skuStartsWithNum(control: AbstractControl): {[key:string]:any} | null{
+
+  if(control.value.match(/^\d/)){
+    return {'startsWithNum':true}
+  }else{
+    return null;
+  }
+  
+}
 
 
 
@@ -46,15 +56,15 @@ constructor(private fb:FormBuilder)
 }
 
 
-function skuStartsWithNum(control: AbstractControl): {[key:string]:any} | null{
+// function skuStartsWithNum(control: AbstractControl): {[key:string]:any} | null{
 
-  if(control.value.match(/^\d/)){
-    return {'startsWithNum':true}
-  }else{
-    return null;
-  }
+//   if(control.value.match(/^\d/)){
+//     return {'startsWithNum':true}
+//   }else{
+//     return null;
+//   }
   
-}
+// }
 
 
 /**
@@ -68,5 +78,27 @@ function skuStartsWithNum(control: AbstractControl): {[key:string]:any} | null{
     return null;
   }else{
     return {'skuContainsNumber':true}
+  }
+}
+
+
+/**
+SKU Contains the word Fuck
+ */
+
+function fuckValidator(control:AbstractControl):{[key:string]:any}|null{
+  if(control.value.toLowerCase().includes('fuck')){
+    return {'fuckCheck':true}
+  }else{
+    return null;
+  }
+}
+
+
+function noThanos(control:AbstractControl):{[key:string]:any} |null{
+  if(control.value.toLowerCase().includes('thanos')){
+    return {'noThanos':true}
+  }else{
+    return null;
   }
 }

@@ -1,26 +1,46 @@
 <div class="ui raised segment">
   <h2 class="ui header">Demo Form: Sku with Builder</h2>
-  <form [formGroup]="myForm"
-        (ngSubmit)="onSubmit(myForm.value)"
-        class="ui form">
-
+  <form
+    [formGroup]="myForm"
+    (ngSubmit)="onSubmit(myForm.value)"
+    class="ui form"
+  >
     <div class="field">
       <label for="skuInput">SKU</label>
-      <input type="text"
-             id="skuInput"
-             placeholder="SKU"
-             formControlName=sku 
-             autocomplete="off"
-             >
-       
+      <input
+        type="text"
+        id="skuInput"
+        placeholder="SKU"
+        formControlName="sku"
+        autocomplete="off"
+      />
     </div>
+    <span
+      *ngIf="myForm.controls['sku'].hasError('skuContainsNumber')"
+      class="ui error"
+      ><p [style.color]="'red'">SKU must contain at least one digit</p></span
+    >
+    <span
+      *ngIf="myForm.controls['sku'].hasError('startsWithNum')"
+      class="ui error"
+      ><p [style.color]="'red'">SKU can not start with number</p></span
+    >
+    <span *ngIf="myForm.controls['sku'].hasError('required')" class="ui error"
+      ><p [style.color]="'red'">SKU field is required</p></span
+    >
+    <span
+      *ngIf="myForm.controls['sku'].hasError('fuckCheck')"
+      class="ui error"
+      ><p [style.color]="'red'">No Fucking</p>
+    </span>
 
-    <span *ngIf="myForm.controls['sku'].hasError('skuContainsNumber')"
-           class="ui error "><p [style.color]="'red'">SKU must contain at least one digit</span>
-    <span *ngIf="myForm.controls['sku'].hasError('startsWithNum')"
-           class="ui error "><p [style.color]="'red'">SKU can not start with number</span>
-    <span *ngIf="myForm.controls['sku'].hasError('required')"
-           class="ui error "><p [style.color]="'red'">SKU field is required</span>
-  <button type="submit" class="ui button" [disabled]="!myForm.controls['sku'].valid">Submit</button>
+<span class="ui error" *ngIf="myForm.controls['sku'].hasError('noThanos')"><p [style.color]="'red'">Thanos Not Allowed</p></span>
+    <button
+      type="submit"
+      class="ui button"
+      [disabled]="!myForm.controls['sku'].valid"
+    >
+      Submit
+    </button>
   </form>
 </div>
